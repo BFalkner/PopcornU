@@ -7,9 +7,16 @@
     <script type="text/javascript" src="app.js"></script>
   </head>
   <body>
-    <div id="dashboard"></div>
-    <script id="dashboard-template" type="text/x-handlebars-template">
-      <div id="dashboard-points">{{points}}</div>
+    <div id="app"></div>
+
+    <script id="playing-template" type="text/x-handlebars-template">
+      <ul id="progress">
+      {{#each progress}}
+        <li class="{{class}}">{{title}}</li>
+      {{/each}}
+      </ul>
+
+      <div id="points">{{points}}</div>
     </script>
   </body>
 </html>

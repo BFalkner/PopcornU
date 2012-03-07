@@ -12,6 +12,7 @@ $(function() {
     challenges: [
       new Challenge({
         movie: movie,
+        title: "Sample Challenge",
         question: "This is a question.",
         trigger_time: 30,
         points: 3,
@@ -34,5 +35,7 @@ $(function() {
     account: account
   });
 
-  new DashboardView({session: session});
+  new PlayingView({session: session})
+    .setElement("#app")
+    .render();
 });
