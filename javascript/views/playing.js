@@ -20,7 +20,7 @@ var PlayingView = Backbone.View.extend({
         var isActive = this.session.isActive(challenge);
 
         return {
-            class: "progressitem" + (isAnswered ? "-answered" : "") + (isActive ? "-active" : ""),
+            class: "progressItem" + (isAnswered ? "-answered" : "") + (isActive ? "-active" : ""),
             title: challenge.get("title")
         };
     }
