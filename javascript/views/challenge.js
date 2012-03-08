@@ -11,5 +11,13 @@ var ChallengeView = Backbone.View.extend({
     }
     this.$el.html(this.template(data));
     return this;
+  },
+
+  events: {
+    "click .challenge-answer-item": "answer"
+  },
+
+  answer: function(e) {
+    Statechart.sendEvent("answered", null);
   }
 });

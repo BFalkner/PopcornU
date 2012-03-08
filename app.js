@@ -11446,6 +11446,23 @@ Statechart.addState("playing", {
     this._view = new PlayingView({session: AppData.session})
       .setElement("#app")
       .render();
+  },
+
+  exitState: function() {
+    this._view.undelegateEvents();
+    this._view = null;
+  },
+
+  home: function() {
+    this.goToState("dashboard");
+  },
+
+  play: function() {
+
+  },
+
+  pause: function() {
+
   }
 })
 ;
@@ -11512,8 +11529,20 @@ var ChallengeView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template(this.challenge));
+    var data = {
+      question: this.challenge.get("question"),
+      answers: this.challenge.get("answers")
+    }
+    this.$el.html(this.template(data));
     return this;
+  },
+
+  events: {
+    "click .challenge-answer-item": "answer"
+  },
+
+  answer: function(e) {
+    Statechart.sendEvent("answered", null);
   }
 });
 /* (Session) */
@@ -11570,18 +11599,6 @@ Statechart.addState("waiting", {
   hasChallenge: function(challenge) {
     AppData.challenge = challenge;
     this.goToState("challenge");
-  },
-
-  home: function() {
-    this.goToState("dashboard");
-  },
-
-  play: function() {
-
-  },
-
-  pause: function() {
-
   }
 });
 
@@ -11590,15 +11607,29 @@ Statechart.addState("challenge", {
 
   _view: null,
 
-  enterState: function() {
+  willEnterState: function(statechart) {
     this._view = new ChallengeView({challenge: AppData.challenge});
     this._view.setElement("#playing-challenge");
+    this._view.$el.hide();
     this._view.render();
+
+    this._view.$el.fadeIn(function() { statechart.restart(); });
+    return true;
+  },
+
+  willExitState: function(statechart) {
+    this._view.undelegateEvents();
+    this._view.$el.fadeOut(function() { statechart.restart(); });
+    return true;
   },
 
   exitState: function() {
     this._view.$el.empty();
     this._view = null;
+  },
+
+  answered: function(answer) {
+    this.goToState("waiting");
   }
 });
 

@@ -49,5 +49,22 @@ Statechart.addState("playing", {
     this._view = new PlayingView({session: AppData.session})
       .setElement("#app")
       .render();
+  },
+
+  exitState: function() {
+    this._view.undelegateEvents();
+    this._view = null;
+  },
+
+  home: function() {
+    this.goToState("dashboard");
+  },
+
+  play: function() {
+
+  },
+
+  pause: function() {
+
   }
 })
