@@ -1,8 +1,8 @@
-var PlayingSC = Stativus.Statechart.create();
+Statechart.addState("waiting", {
+  parentState: "playing",
 
-PlayingSC.addState("waiting", {
   hasChallenge: function(challenge) {
-    this.setData("challenge", challenge);
+    AppData.challenge = challenge;
     this.goToState("challenge");
   },
 
@@ -15,21 +15,22 @@ PlayingSC.addState("waiting", {
 
   pause: function() {
 
-  },
+  }
 });
 
-PlayingSC.addState("challenge", {
+Statechart.addState("challenge", {
+  parentState: "playing",
+
+  _view: null,
+
   enterState: function() {
-    var challenge = this.getData("challenge");
-    var view = new ChallengeView(challenge);
-    view.setElement("#playing-challenge");
-    view.render();
-    this.setData("view", view);
+    this._view = new ChallengeView({challenge: AppData.challenge});
+    this._view.setElement("#playing-challenge");
+    this._view.render();
   },
 
   exitState: function() {
-    var view = this.getData("view");
-    view.$el.empty();
-    this.setData("view");
+    this._view.$el.empty();
+    this._view = null;
   }
 });

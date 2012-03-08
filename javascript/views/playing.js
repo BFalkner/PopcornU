@@ -36,12 +36,12 @@ var PlayingView = Backbone.View.extend({
     "click #challenge": "challenge"
   },
 
-  home: function() { PlayingSC.sendEvent("home"); },
-  play: function() { PlayingSC.sendEvent("play"); },
-  pause: function() { PlayingSC.sendEvent("pause"); },
+  home: function() { Statechart.sendEvent("home"); },
+  play: function() { Statechart.sendEvent("play"); },
+  pause: function() { Statechart.sendEvent("pause"); },
   challenge: function(e) {
     var challenge = this.session.get("movie").get("challenges").first();
-    PlayingSC.sendEvent("hasChallenge", challenge);
+    Statechart.sendEvent("hasChallenge", challenge);
     e.preventDefault();
   }
 });
