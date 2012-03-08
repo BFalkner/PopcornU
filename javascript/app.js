@@ -2,6 +2,7 @@
 //= require underscore-min
 //= require handlebars.min
 //= require backbone
+//= require stativus
 //= require_directory ./models
 //= require_directory ./collections
 //= require_directory ./views
@@ -9,10 +10,10 @@
 $(function() {
   var movie = new Movie({
     title: "Aladdin",
-    challenges: [
+    challenges: new Backbone.Collection([
       new Challenge({
         movie: movie,
-        title: "Sample Challenge",
+        name: "sample",
         question: "This is a question.",
         trigger_time: 30,
         points: 3,
@@ -20,7 +21,7 @@ $(function() {
           {text: "Here's an answer.", isCorrect: false},
           {text: "This one is right.", isCorrect: true},
           {text: "This one is not.", isCorrect: false}]
-      })]
+      })])
   });
 
   var account = new Account({
@@ -35,6 +36,7 @@ $(function() {
     account: account
   });
 
+  PlayingSC.initStates("waiting");
   new PlayingView({session: session})
     .setElement("#app")
     .render();

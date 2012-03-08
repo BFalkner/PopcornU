@@ -8,4 +8,7 @@
 * response - (answer, timestamp)
 */
 var Challenge = Backbone.Model.extend({
+  render: function() {
+    this.$el.text("Challenge");
+  }
 });
