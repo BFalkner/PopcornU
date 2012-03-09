@@ -1,6 +1,10 @@
 Statechart.addState("waiting", {
   parentState: "playing",
 
+  enterState: function() {
+    this.getData("view").render();
+  },
+
   hasChallenge: function(challenge) {
     AppData.challenge = challenge;
     this.goToState("challenge");
@@ -13,6 +17,7 @@ Statechart.addState("challenge", {
   _view: null,
 
   willEnterState: function(statechart) {
+    AppData.challenge.set("isActive", true);
     this._view = new ChallengeView({challenge: AppData.challenge});
     this._view.setElement("#playing-challenge");
     this._view.$el.hide();
@@ -29,11 +34,13 @@ Statechart.addState("challenge", {
   },
 
   exitState: function() {
+    AppData.challenge = null;
     this._view.$el.empty();
     this._view = null;
   },
 
   answered: function(answer) {
+    AppData.challenge.answer(answer, true);
     this.goToState("waiting");
   }
 });

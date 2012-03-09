@@ -4,26 +4,16 @@
 * challenges
 */
 var Session = Backbone.Model.extend({
-  defaults: {
-    "answered_challenges": new Backbone.Collection()
+  initialize: function() {
+    this.set("challenges", new Backbone.Collection(this
+      .get("movie")
+      .get("challenges")
+      .map(function(challenge) { return challenge.clone(); })));
   },
 
   points: function() {
-    return this.get("answered_challenges")
-      .select(function(challenge) { return challenge.get("response").get("answers").isCorrect; })
+    return this.get("challenges")
+      .select(function(challenge) { return challenge.get("isAnswered") && challenge.get("isCorrect"); })
       .reduce(function(challenge, accum) { return challenge.get("points") + accum; }, 0);
-  },
-
-  isAnswered: function(challenge) {
-    return _.chain(this.get("answered_challenges"))
-      .map(function(c) { return c.get("title"); })
-      .include(challenge.get("title"))
-      .value();
-  },
-
-  isActive: function(challenge) {
-    return this.get("active_challenge")
-      ? this.get("active_challenge").get("title") === challenge.get("title")
-      : false;
   }
 });

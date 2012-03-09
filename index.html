@@ -34,7 +34,7 @@
 				<div id="playing-title"><h1>{{{title}}}</h1></div>
 				<ul id="playing-progress">
 					{{#each progress}}
-					<li class="playing-{{class}}"></li>
+					<li class="playing-{{class}}" data-challenge="{{name}}"></li>
 					{{/each}}
 				</ul>
 				<div id="playing-points">{{points}}</div>

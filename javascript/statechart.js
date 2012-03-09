@@ -10,7 +10,7 @@ Statechart.addState("base", {
         challenges: new Backbone.Collection([
           new Challenge({
             movie: movie,
-            name: "sample",
+            name: "sample1",
             question: "This is a question.",
             trigger_time: 30,
             points: 3,
@@ -21,7 +21,7 @@ Statechart.addState("base", {
           }),
           new Challenge({
             movie: movie,
-            name: "sample",
+            name: "sample2",
             question: "This is a question.",
             trigger_time: 30,
             points: 3,
@@ -32,7 +32,7 @@ Statechart.addState("base", {
           }),
           new Challenge({
             movie: movie,
-            name: "sample",
+            name: "sample3",
             question: "This is a question.",
             trigger_time: 30,
             points: 3,
@@ -43,7 +43,7 @@ Statechart.addState("base", {
           }),
           new Challenge({
             movie: movie,
-            name: "sample",
+            name: "sample4",
             question: "This is a question.",
             trigger_time: 30,
             points: 3,
@@ -54,7 +54,7 @@ Statechart.addState("base", {
           }),
           new Challenge({
             movie: movie,
-            name: "sample",
+            name: "sample5",
             question: "This is a question.",
             trigger_time: 30,
             points: 3,
@@ -113,12 +113,12 @@ Statechart.addState("playing", {
   _view: null,
 
   willEnterState: function(statechart) {
-    this._view = new PlayingView({session: AppData.session});
 
     slide(
       _.bind(function() {
-        this._view.setElement("#app");
+        this._view = new PlayingView({session: AppData.session});
         this._view.render();
+        this.setData("view", this._view);
       }, this),
       function() { statechart.restart(); });
     return true;
@@ -126,6 +126,7 @@ Statechart.addState("playing", {
 
   exitState: function() {
     this._view.undelegateEvents();
+    this.setData("view");
     this._view = null;
   },
 

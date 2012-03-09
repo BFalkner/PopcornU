@@ -1,15 +1,18 @@
 /* (Session) */
 var PlayingView = Backbone.View.extend({
+  el: "#app",
+
   initialize: function() {
     _.bindAll(this);
     this.session = this.options.session;
     this.template = Handlebars.compile($("#playing-template").html());
+    this.session.get("challenges").on("all", _.bind(this.render, this));
   },
 
   render: function() {
     var data = {
       title: this.session.get("movie").get("title"),
-      progress: this.session.get("movie").get("challenges").map(this._challengeData),
+      progress: this.session.get("challenges").map(this._challengeData),
       points: this.session.points()
     };
     this.$el.html(this.template(data));
@@ -17,13 +20,14 @@ var PlayingView = Backbone.View.extend({
   },
 
   _challengeData: function(challenge) {
-    var isAnswered = this.session.isAnswered(challenge);
-    var isActive = this.session.isActive(challenge);
+    var isAnswered = challenge.get("isAnswered");
+    var isActive = challenge.get("isActive");
 
     return {
       class: "progressItem"
         + (isAnswered ? "-answered" : "")
-        + (isActive ? "-active" : "")
+        + (isActive ? "-active" : ""),
+      name: challenge.get("name")
     };
   },
 
@@ -33,17 +37,25 @@ var PlayingView = Backbone.View.extend({
     "click #playing-link-home": "home",
     "click #playing-link-play": "play",
     "click #playing-link-pause": "pause",
-    "click #challenge": "challenge"
+    "click .playing-progressItem": "challenge"
   },
 
   home: function(e) {
     Statechart.sendEvent("home");
     e.preventDefault();
   },
-  play: function() { Statechart.sendEvent("play"); },
-  pause: function() { Statechart.sendEvent("pause"); },
+  play: function() {
+    Statechart.sendEvent("play");
+    e.preventDefault();
+  },
+  pause: function() {
+    Statechart.sendEvent("pause");
+    e.preventDefault();
+  },
   challenge: function(e) {
-    var challenge = this.session.get("movie").get("challenges").first();
+    var name = $(e.target).data("challenge");
+    var challenge = this.session.get("challenges")
+      .find(function(c) { return c.get("name") === name; });
     Statechart.sendEvent("hasChallenge", challenge);
     e.preventDefault();
   }
