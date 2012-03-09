@@ -80,7 +80,30 @@ Statechart.addState("base", {
 });
 
 Statechart.addState("dashboard", {
-  parentState: "base"
+  parentState: "base",
+
+  _view: null,
+
+  willEnterState: function(statechart) {
+    this._view = new DashboardView();
+
+    slide(
+      _.bind(function() {
+        this._view.setElement("#app");
+        this._view.render();
+      }, this),
+      function() { statechart.restart(); });
+    return true;
+  },
+
+  exitState: function() {
+    this._view.undelegateEvents();
+    this._view = null;
+  },
+
+  play: function() {
+    this.goToState("playing");
+  }
 });
 
 Statechart.addState("playing", {
@@ -89,9 +112,48 @@ Statechart.addState("playing", {
 
   _view: null,
 
-  enterState: function() {
-    this._view = new PlayingView({session: AppData.session})
-      .setElement("#app")
-      .render();
+  willEnterState: function(statechart) {
+    this._view = new PlayingView({session: AppData.session});
+
+    slide(
+      _.bind(function() {
+        this._view.setElement("#app");
+        this._view.render();
+      }, this),
+      function() { statechart.restart(); });
+    return true;
+  },
+
+  exitState: function() {
+    this._view.undelegateEvents();
+    this._view = null;
+  },
+
+  home: function() {
+    this.goToState("dashboard");
+  },
+
+  play: function() {
+
+  },
+
+  pause: function() {
+
   }
-})
+});
+
+function slide(render, complete) {
+  $("#app").attr("id", "oldApp");
+  var oldApp = $("#oldApp");
+  var newApp = $('<div id="app"></div>').css("left", "100%");
+  oldApp.after(newApp);
+  render();
+  newApp.one("webkitTransitionEnd", function() {
+    oldApp.remove();
+    complete();
+  });
+  setTimeout(function() {
+    oldApp.css({left: "-100%"});
+    newApp.css({left: "0"});
+  });
+}

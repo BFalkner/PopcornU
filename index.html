@@ -5,13 +5,12 @@
     <title>Popcorn U</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
     <script type="text/javascript" src="app.js"></script>
-
-    <style type="text/css"></style>
-
   </head>
   <body>
     <div id="ipad-frame">
-      <div id="app"></div>
+      <div id="hide-overflow">
+        <div id="app"></div>
+      </div>
     </div>
 	
 	<script id="challenge-template" type="text/x-handlebars-template">
@@ -43,9 +42,8 @@
 		</div>
 	</script>
 
-	<script id="dashboard-template" type="text/x-handlebars-template">
-			<div id="screen-1"></div>
-	</script>
-		
+    <script id="dashboard-template" type="text/x-handlebars-template">
+      Hello from Dashboard!
+    </script>
   </body>
 </html>
