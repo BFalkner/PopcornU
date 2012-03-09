@@ -6,52 +6,40 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
     <script type="text/javascript" src="app.js"></script>
 
-    <style type="text/css">
-      #ipad-frame {
-        background: url("images/ipad-container.png") no-repeat;
-        width: 1025px;
-        height: 769px;
-        margin: 20px auto 0px auto;
-        padding: 113px 125px 139px 126px;
-      }
-
-      #app {
-        width: 1024px;
-        height: 768px;
-        border: none;
-      }
-    </style>
+    <style type="text/css"></style>
 
   </head>
   <body>
     <div id="ipad-frame">
       <div id="app"></div>
     </div>
+	
+	<script id="challenge-template" type="text/x-handlebars-template">
+		<div id="challenge-question">{{question}}</div>
+			<ul id="challenge-answers">
+			{{#each answers}}
+			<li class="challenge-answer-item">{{text}}</li>
+			{{/each}}
+			</ul>
+		</script>
 
-    <script id="challenge-template" type="text/x-handlebars-template">
-      <div id="challenge-question">{{question}}</div>
-      <ul id="challenge-answers">
-      {{#each answers}}
-        <li class="challenge-answer-item">{{text}}</li>
-      {{/each}}
-      </ul>
-    </script>
-
-    <script id="playing-template" type="text/x-handlebars-template">
-      <div id="playing-challenge"></div>
-      <a href="#" id="challenge">Challenge</a>
-
-      <a href="#" id="playing-link-home">Home</a>
-      <a href="#" id="playing-link-play">Play</a>
-      <a href="#" id="playing-link-pause">Pause</a>
-      <div id="playing-title">{{title}}</div>
-      <ul id="playing-progress">
-      {{#each progress}}
-        <li class="playing-{{class}}"></li>
-      {{/each}}
-      </ul>
-
-      <div id="playing-points">{{points}}</div>
-    </script>
+		<script id="playing-template" type="text/x-handlebars-template">
+			<div id="screen-2"> 
+				<div id="playing-challenge"></div>
+				<a href="#" id="challenge">Challenge</a>
+				<div id="spy-nav">
+					<a href="#" id="playing-link-home">Home</a>
+					<a href="#" id="playing-link-play">Play</a>
+					<a href="#" id="playing-link-pause">Pause</a>
+					<div id="playing-title"><h1>{{{title}}}</h1></div>
+					<ul id="playing-progress">
+						{{#each progress}}
+						<li class="playing-{{class}}"></li>
+						{{/each}}
+					</ul>
+					<div id="playing-points">{{points}}</div>
+				</div>
+			</div>
+		</script>
   </body>
 </html>

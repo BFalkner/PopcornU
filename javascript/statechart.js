@@ -6,8 +6,52 @@ Statechart.addState("base", {
 
   enterState: function() {
     var movie = new Movie({
-        title: "Aladdin",
+        title: "Spy Kids: All the Time in the World <span>(89 min.)</span>",
         challenges: new Backbone.Collection([
+          new Challenge({
+            movie: movie,
+            name: "sample",
+            question: "This is a question.",
+            trigger_time: 30,
+            points: 3,
+            answers: [
+              {text: "Here's an answer.", isCorrect: false},
+              {text: "This one is right.", isCorrect: true},
+              {text: "This one is not.", isCorrect: false}]
+          }),
+          new Challenge({
+            movie: movie,
+            name: "sample",
+            question: "This is a question.",
+            trigger_time: 30,
+            points: 3,
+            answers: [
+              {text: "Here's an answer.", isCorrect: false},
+              {text: "This one is right.", isCorrect: true},
+              {text: "This one is not.", isCorrect: false}]
+          }),
+          new Challenge({
+            movie: movie,
+            name: "sample",
+            question: "This is a question.",
+            trigger_time: 30,
+            points: 3,
+            answers: [
+              {text: "Here's an answer.", isCorrect: false},
+              {text: "This one is right.", isCorrect: true},
+              {text: "This one is not.", isCorrect: false}]
+          }),
+          new Challenge({
+            movie: movie,
+            name: "sample",
+            question: "This is a question.",
+            trigger_time: 30,
+            points: 3,
+            answers: [
+              {text: "Here's an answer.", isCorrect: false},
+              {text: "This one is right.", isCorrect: true},
+              {text: "This one is not.", isCorrect: false}]
+          }),
           new Challenge({
             movie: movie,
             name: "sample",
