@@ -82,10 +82,27 @@ Statechart.addState("base", {
 Statechart.addState("dashboard", {
   parentState: "base",
 
+  _view: null,
+
   willEnterState: function(statechart) {
-    slide(function() { $("#app").text("Dashboard"); },
-          function() { statechart.restart(); });
+    this._view = new DashboardView();
+
+    slide(
+      _.bind(function() {
+        this._view.setElement("#app");
+        this._view.render();
+      }, this),
+      function() { statechart.restart(); });
     return true;
+  },
+
+  exitState: function() {
+    this._view.undelegateEvents();
+    this._view = null;
+  },
+
+  play: function() {
+    this.goToState("playing");
   }
 });
 
@@ -95,10 +112,16 @@ Statechart.addState("playing", {
 
   _view: null,
 
-  enterState: function() {
-    this._view = new PlayingView({session: AppData.session})
-      .setElement("#app")
-      .render();
+  willEnterState: function(statechart) {
+    this._view = new PlayingView({session: AppData.session});
+
+    slide(
+      _.bind(function() {
+        this._view.setElement("#app");
+        this._view.render();
+      }, this),
+      function() { statechart.restart(); });
+    return true;
   },
 
   exitState: function() {
