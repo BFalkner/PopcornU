@@ -14,5 +14,6 @@ var DashboardView = Backbone.View.extend({
 
   play: function(e) {
     Statechart.sendEvent("play");
+    e.preventDefault();
   }
 });
