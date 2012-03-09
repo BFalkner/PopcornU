@@ -2,7 +2,7 @@ var AppData = {},
     Statechart = Stativus.Statechart.create();
 
 Statechart.addState("base", {
-  initialSubstate: "playing",
+  initialSubstate: "dashboard",
 
   enterState: function() {
     var movie = new Movie({

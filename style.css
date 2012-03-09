@@ -119,3 +119,18 @@ ul#playing-progress li {
 }
 
 /* Dashboard Style */
+
+#dashboard {
+	display: block;
+	width:763px;
+	height: 753px;
+	background: url(images/spy-dashboard.jpg) no-repeat top left;
+}
+
+#dashboard h1 {
+	display: block;
+	height:0;
+	margin: 0;
+	padding: 0;
+	text-indent: -9999em;
+}
