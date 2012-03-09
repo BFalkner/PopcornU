@@ -36,7 +36,10 @@ var PlayingView = Backbone.View.extend({
     "click #challenge": "challenge"
   },
 
-  home: function() { Statechart.sendEvent("home"); },
+  home: function(e) {
+    Statechart.sendEvent("home");
+    e.preventDefault();
+  },
   play: function() { Statechart.sendEvent("play"); },
   pause: function() { Statechart.sendEvent("pause"); },
   challenge: function(e) {

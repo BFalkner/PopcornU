@@ -80,7 +80,13 @@ Statechart.addState("base", {
 });
 
 Statechart.addState("dashboard", {
-  parentState: "base"
+  parentState: "base",
+
+  willEnterState: function(statechart) {
+    slide(function() { $("#app").text("Dashboard"); },
+          function() { statechart.restart(); });
+    return true;
+  }
 });
 
 Statechart.addState("playing", {
@@ -111,4 +117,20 @@ Statechart.addState("playing", {
   pause: function() {
 
   }
-})
+});
+
+function slide(render, complete) {
+  $("#app").attr("id", "oldApp");
+  var oldApp = $("#oldApp");
+  var newApp = $('<div id="app"></div>').css("left", "100%");
+  oldApp.after(newApp);
+  render();
+  newApp.one("webkitTransitionEnd", function() {
+    oldApp.remove();
+    complete();
+  });
+  setTimeout(function() {
+    oldApp.css({left: "-100%"});
+    newApp.css({left: "0"});
+  });
+}
