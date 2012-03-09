@@ -99,3 +99,15 @@ ul#playing-progress li {
 	background: url(images/spy-bullet.png) no-repeat top left;
 	margin-right: 8px;
 }
+
+#challenge-1 {
+	display: block;
+	width: 346px;
+	height: 313px;
+	background: url(images/spy-question-bg.png) no-repeat top left;
+	position: absolute;
+	top:10px;
+	right: 5px;
+}
+
+/* Dashboard Style */

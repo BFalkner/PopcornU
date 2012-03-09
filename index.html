@@ -15,31 +15,37 @@
     </div>
 	
 	<script id="challenge-template" type="text/x-handlebars-template">
-		<div id="challenge-question">{{question}}</div>
+		<div id="challenge-1">	
+			<div id="challenge-question">{{question}}</div>
 			<ul id="challenge-answers">
 			{{#each answers}}
 			<li class="challenge-answer-item">{{text}}</li>
 			{{/each}}
 			</ul>
-		</script>
+		</div>	
+	</script>
 
-		<script id="playing-template" type="text/x-handlebars-template">
-			<div id="screen-2"> 
-				<div id="playing-challenge"></div>
-				<a href="#" id="challenge">Challenge</a>
-				<div id="spy-nav">
-					<a href="#" id="playing-link-home">Home</a>
-					<a href="#" id="playing-link-play">Play</a>
-					<a href="#" id="playing-link-pause">Pause</a>
-					<div id="playing-title"><h1>{{{title}}}</h1></div>
-					<ul id="playing-progress">
-						{{#each progress}}
-						<li class="playing-{{class}}"></li>
-						{{/each}}
-					</ul>
-					<div id="playing-points">{{points}}</div>
-				</div>
+	<script id="playing-template" type="text/x-handlebars-template">
+		<div id="screen-2"> 
+			<div id="playing-challenge"></div>
+			<div id="spy-nav">
+				<a href="#" id="playing-link-home">Home</a>
+				<a href="#" id="playing-link-play">Play</a>
+				<a href="#" id="playing-link-pause">Pause</a>
+				<div id="playing-title"><h1>{{{title}}}</h1></div>
+				<ul id="playing-progress">
+					{{#each progress}}
+					<li class="playing-{{class}}"></li>
+					{{/each}}
+				</ul>
+				<div id="playing-points">{{points}}</div>
 			</div>
-		</script>
+		</div>
+	</script>
+
+	<script id="dashboard-template" type="text/x-handlebars-template">
+			<div id="screen-1"></div>
+	</script>
+		
   </body>
 </html>
