@@ -31,7 +31,7 @@ body { margin: 0 auto; border: none; }
   display: block;
   width: 763px;
   height: 573px;
-  background: url(images/spy-bg.jpg) no-repeat top left;
+  background: url(images/shrek-bg.jpg) no-repeat top left;
   border: none;
 }
 
@@ -39,20 +39,20 @@ body { margin: 0 auto; border: none; }
   position: absolute;
   display: block;
   width: 763px;
-  height: 111px;
-  background: url(images/spy-nav-bg.png) no-repeat top left;
+  height: 81px;
+  background: url(images/shrek-nav-bg.png) no-repeat top left;
   bottom: 0;
   left: 1px;
 }
 
 #spy-nav a#playing-link-home {
   display: block;
-  width: 52px;
-  height: 47px;
-  background: url(images/spy-home.png) no-repeat top left;
+  width: 53px;
+  height: 37px;
+  background: url(images/shrek-home.png) no-repeat top left;
   position: relative;
-  top: 26px;
-  left: 38px;
+  top: 18px;
+  left: 53px;
   text-indent: -9999em;
 }
 
@@ -60,18 +60,20 @@ body { margin: 0 auto; border: none; }
 
 #spy-nav a#playing-link-pause, #spy-nav a#playing-link-play {
   display: block;
-  width: 42px;
-  height: 46px;
-  background: url(images/spy-play.png) no-repeat top left;
+  width: 43px;
+  height: 36px;
+  background: url(images/shrek-play.png) no-repeat top left;
   position: absolute;
-  top: 26px;
-  left: 97px;
+  top: 18px;
+  left: 112px;
   text-indent: -9999em;
 }
 
+#spy-nav a#playing-link-play { width: 36px;}
+
 #spy-nav a#playing-link-pause:hover { background-position: bottom left;}
 
-#spy-nav a#playing-link-play { left: 139px; background-position: top right; }
+#spy-nav a#playing-link-play { left: 154px; background-position: top right; }
 
 #spy-nav a#playing-link-play:hover { background-position: bottom right;}
 
@@ -97,25 +99,25 @@ body { margin: 0 auto; border: none; }
   color: #fff;
 }
 
-ul#playing-progress { position: absolute; left: 330px; bottom: 30px;}
+ul#playing-progress { position: absolute; left: 330px; bottom: 12px;}
 
 ul#playing-progress li {
 	float: left;
 	display: block;
 	width: 8px;
 	height: 8px;
-	background: url(images/spy-bullet.png) no-repeat top left;
+	background: url(images/shrek-bullet.png) no-repeat top left;
 	margin-right: 8px;
 }
 
 #challenge-1 {
 	display: block;
-	width: 346px;
-	height: 313px;
-	background: url(images/spy-question-bg.png) no-repeat top left;
+	width: 379px;
+	height: 384px;
+	background: url(images/shrek-question-bg.png) no-repeat top left;
 	position: absolute;
-	top:10px;
-	right: 5px;
+	top:0;
+	right:0;
 }
 
 /* Dashboard Style */
